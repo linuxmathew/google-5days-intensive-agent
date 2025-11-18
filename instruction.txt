@@ -1,0 +1,8 @@
+day 1: introduction to adk
+
+day 2: agent and tools
+    file name: agent_with_tools
+    agent_name = currency converter agent
+
+    source .venv/bin/activate and run with python3 agent_with_tools.py
+
