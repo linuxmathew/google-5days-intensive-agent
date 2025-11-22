@@ -17,8 +17,7 @@ retry_config = types.HttpRetryOptions(
 research_agent = Agent(
     name="ResearchAgent",
     model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_config),
-    instruction="""You are a specialized research agent. Your only job is to use the
-    google_search tool to find 2-3 pieces of relevant information on the given topic and present the findings with citations.""",
+    instruction="""You are a specialized research agent. Your only job is to use the google_search tool to find 2-3 pieces of relevant information on the given topic and present the findings with citations.""",
     tools=[google_search],
     output_key="research_findings",  # The result of this agent will be stored in the session state with this key.
 )
@@ -40,9 +39,9 @@ root_agent = Agent(
     model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_config),
     # This instruction tells the root agent HOW to use its tools (which are the other agents).
     instruction="""You are a research coordinator. Your goal is to answer the user's query by orchestrating a workflow.
-1. First, you MUST call the `ResearchAgent` tool to find relevant information on the topic provided by the user.
-2. Next, after receiving the research findings, you MUST call the `SummarizerAgent` tool to create a concise summary.
-3. Finally, present the final summary clearly to the user as your response.""",
+    1. First, you MUST call the `ResearchAgent` tool to find relevant information on the topic provided by the user.
+    2. Next, after receiving the research findings, you MUST call the `SummarizerAgent` tool to create a concise summary.
+    3. Finally, present the final summary clearly to the user as your response.""",
     # We wrap the sub-agents in `AgentTool` to make them callable tools for the root agent.
     tools=[AgentTool(research_agent), AgentTool(summarizer_agent)],
 )
